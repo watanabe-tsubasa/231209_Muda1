@@ -1,7 +1,6 @@
 import { Box, Button, ButtonGroup, Text, VStack } from "@chakra-ui/react"
 import { useSpeechRecognition } from "../Hooks/useSpeechRecognition";
-import { useContext } from "react";
-import { BonnouContext } from "../Contexts/BonnouContext";
+import { useBonnouContext } from "../Hooks/contextHooks";
 
 export const RecordButton = () => {
   const {
@@ -13,10 +12,7 @@ export const RecordButton = () => {
     resetTrascript
   } = useSpeechRecognition();
 
-  const context = useContext(BonnouContext);
-  if (!context) {
-    return <div>Loading...</div>;
-  }
+  const context = useBonnouContext();
   const { setBonnouList } = context;
 
   const sender = () => {

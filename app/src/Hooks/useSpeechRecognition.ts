@@ -1,12 +1,5 @@
 import { useState, useEffect } from 'react';
 
-declare global {
-  interface Window {
-    SpeechRecognition: any;
-    webkitSpeechRecognition: any;
-  }
-}
-
 export const useSpeechRecognition = () => {
   const [transcript, setTranscript] = useState<string>('');
   const [isListening, setIsListening] = useState<boolean>(false);
@@ -28,7 +21,7 @@ export const useSpeechRecognition = () => {
     recognition.interimResults = true;
     recognition.lang = 'ja-JP'; // 日本語に設定
 
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event) => {
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) {
@@ -37,7 +30,7 @@ export const useSpeechRecognition = () => {
       }
     };
 
-    recognition.onerror = (event: any) => {
+    recognition.onerror = (event) => {
       setIsListening(false);
       setError('Speech recognition error: ' + event.error);
     };

@@ -1,4 +1,5 @@
 import { CardContainer } from "./components/CardContainer"
+import { JoyaBellModal } from "./components/JoyaBellModal"
 import { PageHeader } from "./components/PageHeader"
 import { RecordButton } from "./components/RecordButton"
 
@@ -9,6 +10,7 @@ function App() {
       <PageHeader />
       <RecordButton />
       <CardContainer />
+      <JoyaBellModal />
     </>
   )
 }

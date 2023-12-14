@@ -1,14 +1,10 @@
-import { useContext } from "react"
-import { BonnouContext } from "../Contexts/BonnouContext"
+import { useBonnouContext } from "../Hooks/contextHooks";
 import { BonnouCard } from "./BonnouCard";
 import { Flex } from "@chakra-ui/react";
 
 
 export const CardContainer = () => {
-  const context = useContext(BonnouContext);
-  if (!context) {
-    return <div>Loading...</div>;
-  }
+  const context = useBonnouContext();
   const { bonnouList } = context;
 
   return (
