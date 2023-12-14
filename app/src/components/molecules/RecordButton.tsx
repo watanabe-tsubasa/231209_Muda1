@@ -3,6 +3,7 @@ import { useSpeechRecognition } from "../../Hooks/useSpeechRecognition";
 import { useBonnouContext } from "../../Hooks/contextHooks";
 
 export const RecordButton = () => {
+  
   const {
     transcript,
     isListening,
@@ -33,15 +34,27 @@ export const RecordButton = () => {
           </Text>
         </Box>
         <ButtonGroup>
-          <Button onClick={startListening} disabled={isListening}>
-            煩悩を吐き出す
+          <Button
+           onClick={!isListening? startListening: stopListening}
+          //  disabled={isListening}
+           style={{
+            backgroundColor: !isListening ? '#3182CE': '',
+            color: !isListening ? 'whitesmoke': 'black',
+           }}
+          >
+            {!isListening? '煩悩を吐き出す': '休憩する'}
           </Button>
-          <Button onClick={stopListening} disabled={!isListening}>
-            休憩する
-          </Button>
-          <Button onClick={sender} disabled={!isListening}>
+          {(transcript !== '') ? 
+          <Button
+           onClick={sender}
+           disabled={!isListening}
+           style={{
+            backgroundColor: '#3182CE',
+            color: 'whitesmoke'
+           }}
+          >
             煩悩を神に捧げる
-          </Button>
+          </Button>: <div></div>}
         </ButtonGroup>
         <Box py={2}>
           <Text>
