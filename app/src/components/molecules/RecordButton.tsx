@@ -1,6 +1,6 @@
 import { Box, Button, ButtonGroup, Text, VStack } from "@chakra-ui/react"
-import { useSpeechRecognition } from "../Hooks/useSpeechRecognition";
-import { useBonnouContext } from "../Hooks/contextHooks";
+import { useSpeechRecognition } from "../../Hooks/useSpeechRecognition";
+import { useBonnouContext } from "../../Hooks/contextHooks";
 
 export const RecordButton = () => {
   const {
@@ -13,9 +13,10 @@ export const RecordButton = () => {
   } = useSpeechRecognition();
 
   const context = useBonnouContext();
-  const { setBonnouList } = context;
+  const { setBonnouList, bonnouCount } = context;
 
   const sender = () => {
+    if(transcript === '') { return }
     setBonnouList(currentBonnou => ([...currentBonnou, transcript]))
     resetTrascript();
   }
@@ -23,15 +24,23 @@ export const RecordButton = () => {
   return(
     <Box>
       <VStack justify='center' align='center'>
+        <Box p={4}>
+          <Text fontSize='x-large'>
+              払った煩悩：<span style={{
+                fontSize: 'xx-large',
+                fontWeight: 'bolder'
+                }}>{bonnouCount}</span>
+          </Text>
+        </Box>
         <ButtonGroup>
           <Button onClick={startListening} disabled={isListening}>
-            煩悩を呟く
+            煩悩を吐き出す
           </Button>
           <Button onClick={stopListening} disabled={!isListening}>
-            煩悩を止める
+            休憩する
           </Button>
           <Button onClick={sender} disabled={!isListening}>
-            リセット
+            煩悩を神に捧げる
           </Button>
         </ButtonGroup>
         <Box py={2}>

@@ -1,6 +1,6 @@
 import { Button, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text } from "@chakra-ui/react"
-import { useDeviceMotion } from "../Hooks/useDeviceMotion";
-import { useBonnouContext, useJoyaBellContext } from "../Hooks/contextHooks";
+import { useDeviceMotion } from "../../Hooks/useDeviceMotion";
+import { useBonnouContext, useJoyaBellContext } from "../../Hooks/contextHooks";
 
 
 export const JoyaBellModal = () => {
@@ -16,10 +16,11 @@ export const JoyaBellModal = () => {
     onClose,
   } = jContext
 
-  const{ bonnouList, setBonnouList } = bContext;
+  const{ bonnouList, setBonnouList, setBonnouCount } = bContext;
   const clearMind = () => {
     const newBonnouList = bonnouList.filter(bonnou => (bonnou !== selectedBonnou))
     setBonnouList(newBonnouList);
+    setBonnouCount((current) => current + 1);
   }
   const onClickTestButton = () => {
     clearMind();

@@ -1,5 +1,5 @@
 import { Box, Button, Card, CardBody, CardFooter, CardHeader, Divider, Heading, Skeleton } from "@chakra-ui/react"
-import { useJoyaBellContext } from "../Hooks/contextHooks";
+import { useJoyaBellContext } from "../../Hooks/contextHooks";
 
 interface BonnouCardProps {
   title: string
@@ -28,7 +28,13 @@ export const BonnouCard: React.FC<BonnouCardProps> = ({ title }) => {
         </CardBody>
         <Divider />
         <CardFooter>
-          <Button onClick={onClickClearMind}>払う</Button>
+          <Button
+           onClick={onClickClearMind}
+           colorScheme='blue'
+           w='200px'
+          >
+            払  う
+          </Button>
         </CardFooter>
       </Card>
     </Box>
